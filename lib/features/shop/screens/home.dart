@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_platform/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:ecommerce_platform/common/widgets/custom_shapes/containers/search_container.dart';
+import 'package:ecommerce_platform/common/widgets/product_cards/product_card_vertical.dart';
 import 'package:ecommerce_platform/common/widgets/texts/section_heading.dart';
+import 'package:ecommerce_platform/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:ecommerce_platform/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:ecommerce_platform/utils/constants/colors.dart';
 import 'package:ecommerce_platform/utils/constants/image_strings.dart';
@@ -9,14 +11,16 @@ import 'package:ecommerce_platform/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import '../../../../../common/widgets/custom_shapes/containers/curved_edges/primary_header_container.dart';
 import '../../../../../common/widgets/image_text_widgets/images/t_rounded_image.dart';
-import 'home_appbar.dart';
+import 'home/widgets/promo_slider.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
+    return     const Scaffold(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             TPrimaryHeaderContainer(
@@ -48,51 +52,28 @@ class HomeScreen extends StatelessWidget {
             ///body
             Padding(
               padding: EdgeInsets.all(TSizes.defaultSection),
-            child: TPromoSlider(),
+            child: Column(
+              children: [
+                /// sliders
+                TPromoSlider(banners: [
+                  TImages.promoBanner1,
+                  TImages.promoBanner2,
+                  TImages.promoBanner3,
+                  TImages.promoBanner4,
+                  TImages.promoBanner5,
+                  TImages.promoBanner6,
+                  TImages.promoBanner7,
+                  TImages.promoBanner8],),
+                SizedBox(height: TSizes.spaceBtwSections,),
+                ///popular products
+                TProductCardVertical(),
+              ],
+            ),
 
             ),
           ],
         ),
-      );
-  }
-}
-
-class TPromoSlider extends StatelessWidget {
-  const TPromoSlider({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CarouselSlider(
-          options: CarouselOptions(
-               viewportFraction: 1
-                  ),
-            items: const [
-          TRoundedImage(imageUrl: TImages.promoBanner1),
-          TRoundedImage(imageUrl: TImages.promoBanner2),
-          TRoundedImage(imageUrl: TImages.promoBanner3),
-              TRoundedImage(imageUrl: TImages.promoBanner4),
-              TRoundedImage(imageUrl: TImages.promoBanner5),
-              TRoundedImage(imageUrl: TImages.promoBanner6),
-              TRoundedImage(imageUrl: TImages.promoBanner7),
-              TRoundedImage(imageUrl: TImages.promoBanner8),
-        ],),
-        const  SizedBox(height: TSizes.spaceBtwSections,),
-        Row(
-          children: [
-            for(int i = 0; i < 3; i++)
-            TCircularContainer(
-              width: 20,
-              height: 4,
-              margin: EdgeInsets.only(right: 10),
-              backgroundColor: Colors.green,
-            ),
-          ],
-        )
-      ],
+      ),
     );
   }
 }

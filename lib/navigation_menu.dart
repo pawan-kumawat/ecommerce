@@ -1,4 +1,3 @@
-import 'package:ecommerce_platform/features/shop/screens/home/widgets/home.dart';
 import 'package:ecommerce_platform/utils/helpers/helper_functions.dart';
 import 'package:ecommerce_platform/navigation_menu.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:iconsax/iconsax.dart';
 
+import 'features/shop/screens/home.dart';
 import 'utils/constants/colors.dart';
 import 'navigation_menu.dart';
 
